@@ -23,6 +23,10 @@
 				<td><input type="text" name="title" value="${u.getTitle() }" /></td>
 			</tr>
 			<tr>
+				<td>Prof:</td>
+				<td><input type="text" name="prof" value="${u.getProf() }" /></td>
+			</tr>
+			<tr>
 				<td>Writer:</td>
 				<td><input type="text" name="writer" value="${u.getWriter()}" /></td>
 			</tr>
