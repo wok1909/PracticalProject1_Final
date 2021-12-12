@@ -5,6 +5,7 @@ public class BoardVO {
 	private int seq;
 	private String category;
 	private String title; 
+	private String prof;
 	private String writer; 
 	private String content; 
 	private Date regdate;
@@ -49,6 +50,12 @@ public class BoardVO {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	public String getProf() {
+		return prof;
+	}
+	public void setProf(String prof) {
+		this.prof = prof;
 	}
 	private int cnt;
 }
