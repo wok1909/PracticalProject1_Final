@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page
-	import="com.mybatis.myapp.dao.BoardDAO,com.mybatis.myapp.board.BoardVO ,java.util.*"%>
+<%@ page
+	import="com.mybatis.myapp.dao.BoardDAO,com.mybatis.myapp.board.BoardVO, com.mybatis.myapp.dao.UserDAO, com.mybatis.myapp.dao.UserDAO2 ,java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <!-- BoardDAO,BoardVO, java.util전부를 import합니다. -->
 <!DOCTYPE html>
 <html>
@@ -49,9 +51,9 @@
 	<h1>자유게시판</h1>
 	<table id="list" width="90%">
 		<tr>
-			<th>Id</th>
-			<th>Category</th>
+			<th>Major</th>
 			<th>Title</th>
+			<th>Prof</th>
 			<th>Writer</th>
 			<th>Content</th>
 			<th>Regdate</th>
@@ -60,14 +62,22 @@
 		</tr>
 		<c:forEach items="${list}" var="u">
 			<tr>
-				<td>${u.getSeq()}</td>
 				<td>${u.getCategory()}</td>
 				<td>${u.getTitle()}</td>
+				<td>${u.getProf()}</td>
 				<td>${u.getWriter()}</td>
 				<td>${u.getContent()}</td>
-				<td>${u.getRegdate()}</td>
-				<td><a href="editform/${u.getSeq()}">Edit</a></td>
-				<td><a href="javascript:delete_ok('${u.getSeq()}')">Delete</a></td>
+				<td>${u.getRegdate()}</td>	
+				<c:choose>
+					<c:when test="${u.getWriter() == login.userid}">
+						<td><a href="editform/${u.getSeq()}">Edit</a></td>
+						<td><a href="javascript:delete_ok('${u.getSeq()}')">Delete</a></td>
+					</c:when>
+					<c:when test="${u.getWriter() != login.userid}">
+						<td></td>
+						<td></td>
+					</c:when>
+				</c:choose>
 			</tr>
 		</c:forEach>
 	</table>
