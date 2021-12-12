@@ -3,13 +3,38 @@
 <%@ page
 	import="com.mybatis.myapp.dao.BoardDAO,com.mybatis.myapp.board.BoardVO, com.mybatis.myapp.dao.UserDAO, com.mybatis.myapp.dao.UserDAO2 ,java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
 <!-- BoardDAO,BoardVO, java.util전부를 import합니다. -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO- 8859-1">
+
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Simple line icons-->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+	rel="stylesheet" />
+<!-- Google fonts-->
+<link
+	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Fruktur&display=swap"
+	rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="${path}/resources/css/styles.css" rel="stylesheet" />
+
 <title>free board</title>
 <style>
 #list {
@@ -39,6 +64,92 @@
 	background-color: #006bb3;
 	color: white;
 }
+
+<
+style>* {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	font-family: sans-serif;
+}
+
+.loginForm:not(masthead) {
+	position: absolute;
+	width: 300px;
+	height: 400px;
+	padding: 30px, 20px;
+	background-color: #FFFFFF;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 15px;
+}
+
+.loginForm h2 {
+	text-align: center;
+	margin: 30px;
+}
+
+.idForm {
+	border-bottom: 2px solid #adadad;
+	margin: 30px;
+	padding: 10px 10px;
+}
+
+.passForm {
+	border-bottom: 2px solid #adadad;
+	margin: 30px;
+	padding: 10px 10px;
+}
+
+.id {
+	width: 100%;
+	border: none;
+	outline: none;
+	color: #636e72;
+	font-size: 16px;
+	height: 25px;
+	background: none;
+}
+
+.pw {
+	width: 100%;
+	border: none;
+	outline: none;
+	color: #636e72;
+	font-size: 16px;
+	height: 25px;
+	background: none;
+}
+
+.btn {
+	position: relative;
+	left: 40%;
+	transform: translateX(-50%);
+	margin-bottom: 40px;
+	width: 80%;
+	height: 40px;
+	background: linear-gradient(125deg, #81ecec, #6c5ce7, #81ecec);
+	background-position: left;
+	background-size: 200%;
+	color: white;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	transition: 0.4s;
+	display: inline;
+}
+
+.btn:hover {
+	background-position: right;
+}
+
+.bottomText {
+	text-align: center;
+}
+</style>
+
 </style>
 <script>
 	function delete_ok(id) {
@@ -48,40 +159,45 @@
 </script>
 </head>
 <body>
-	<h1>자유게시판</h1>
-	<table id="list" width="90%">
-		<tr>
-			<th>Major</th>
-			<th>Title</th>
-			<th>Prof</th>
-			<th>Writer</th>
-			<th>Content</th>
-			<th>Regdate</th>
-			<th>Edit</th>
-			<th>Delete</th>
-		</tr>
-		<c:forEach items="${list}" var="u">
+
+	<header class="masthead">
+		>
+		<h1>자유게시판</h1>
+		<table id="list" width="90%">
 			<tr>
-				<td>${u.getCategory()}</td>
-				<td>${u.getTitle()}</td>
-				<td>${u.getProf()}</td>
-				<td>${u.getWriter()}</td>
-				<td>${u.getContent()}</td>
-				<td>${u.getRegdate()}</td>	
-				<c:choose>
-					<c:when test="${u.getWriter() == login.userid}">
-						<td><a href="editform/${u.getSeq()}">Edit</a></td>
-						<td><a href="javascript:delete_ok('${u.getSeq()}')">Delete</a></td>
-					</c:when>
-					<c:when test="${u.getWriter() != login.userid}">
-						<td></td>
-						<td></td>
-					</c:when>
-				</c:choose>
+				<th>Major</th>
+				<th>Title</th>
+				<th>Prof</th>
+				<th>Writer</th>
+				<th>Content</th>
+				<th>Regdate</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			</tr>
-		</c:forEach>
-	</table>
-	<br />
-	<a href="add">Add New Post</a>
+			<c:forEach items="${list}" var="u">
+				<tr>
+					<td>${u.getCategory()}</td>
+					<td>${u.getTitle()}</td>
+					<td>${u.getProf()}</td>
+					<td>${u.getWriter()}</td>
+					<td>${u.getContent()}</td>
+					<td>${u.getRegdate()}</td>
+					<c:choose>
+						<c:when test="${u.getWriter() == login.userid}">
+							<td><a href="editform/${u.getSeq()}">Edit</a></td>
+							<td><a href="javascript:delete_ok('${u.getSeq()}')">Delete</a></td>
+						</c:when>
+						<c:when test="${u.getWriter() != login.userid}">
+							<td></td>
+							<td></td>
+						</c:when>
+					</c:choose>
+				</tr>
+			</c:forEach>
+		</table>
+		<br /> <a href="add">Add New Post</a>
+
+	</header>
+
 </body>
 </html>
