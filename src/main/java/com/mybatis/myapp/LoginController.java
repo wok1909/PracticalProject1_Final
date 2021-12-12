@@ -33,7 +33,8 @@ public class LoginController {
 			// 로그인성공
 			System.out.println("로그인성공!");
 			session.setAttribute("login", loginvo); 
-			returnURL = "redirect:/board/list";         
+			HomeController.setLoggedin(true);
+			returnURL = "redirect:/";         
 		}
 		else {
 			// 로그인실패
@@ -43,9 +44,10 @@ public class LoginController {
 		return returnURL;
 	}
 	// 로그아웃하는부분
-	@RequestMapping(value="/logout")
+	@RequestMapping(value="/")
 	public String logout(HttpSession session) {
 		session.invalidate(); 
+		HomeController.setLoggedin(false);
 		return "redirect:/login/login";
 	}
 

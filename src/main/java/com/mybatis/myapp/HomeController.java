@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	private static boolean isLoggedin = false;
+	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -34,6 +39,33 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}
+	
+	@RequestMapping(value="/login")
+	public String logout(HttpSession session) {
+		session.invalidate(); 
+		this.isLoggedin = false;
+		return "redirect:/login/login";
+	}
+	
+	@RequestMapping(value="/goboard",method= RequestMethod.GET)
+	public String goboard() { 
+		String returnURL = "";
+		if(isLoggedin)
+			returnURL = "redirect:/board/list";
+		else 
+			returnURL = "redirect:/login/login";
+		
+		
+		return returnURL;
+	}
+	
+	public static boolean isLoggedin() {
+		return isLoggedin;
+	}
+
+	public static void setLoggedin(boolean isLoggedin) {
+		HomeController.isLoggedin = isLoggedin;
 	}
 	
 }
