@@ -22,16 +22,11 @@
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
-	crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
 <!-- Simple line icons-->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
-	rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
 <!-- Google fonts-->
-<link
-	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Fruktur&display=swap"
-	rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Fruktur&display=swap" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${path}/resources/css/styles.css" rel="stylesheet" />
 
@@ -150,7 +145,6 @@ style>* {
 }
 </style>
 
-</style>
 <script>
 	function delete_ok(id) {
 		var a = confirm("정말로 삭제하겠습니까?"); 
@@ -161,8 +155,8 @@ style>* {
 <body>
 
 	<header class="masthead">
-		>
 		<h1>자유게시판</h1>
+		<a href="add">Add New Post</a>
 		<table id="list" width="90%">
 			<tr>
 				<th>Major</th>
@@ -195,7 +189,6 @@ style>* {
 				</tr>
 			</c:forEach>
 		</table>
-		<br /> <a href="add">Add New Post</a>
 
 	</header>
 
