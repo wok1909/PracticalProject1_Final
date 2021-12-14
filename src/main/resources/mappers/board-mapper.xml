@@ -8,7 +8,7 @@
 	</insert>
 	<update id="updateBoard">
 		update BOARD
-		set category=#{category}, title= #{title}, #{prof}, content=#{content}, writer=#{writer} 
+		set category=#{category}, title= #{title}, prof = #{prof}, content=#{content}, writer=#{writer} 
 		where seq=#{seq}
 	</update>
 	<delete id="deleteBoard">
