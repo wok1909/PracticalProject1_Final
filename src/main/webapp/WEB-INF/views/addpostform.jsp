@@ -52,7 +52,8 @@
 				<td><textarea cols="50" rows="5" name="content"></textarea></td>
 			</tr>
 			<tr>
-				<td><a href="list">View All Records</a></td>
+				<td><a href="list">Go back to Main</a></td>
+				<td align="right"><input type="reset" value="Reset" /></td>
 				<td align="right"><input type="submit" value="Add Post" /></td>
 			</tr>
 		</table>
