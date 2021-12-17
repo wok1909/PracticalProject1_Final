@@ -3,7 +3,7 @@
 <%@ page
 	import="com.mybatis.myapp.dao.BoardDAO,com.mybatis.myapp.board.BoardVO, com.mybatis.myapp.dao.UserDAO, com.mybatis.myapp.dao.UserDAO2 ,java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
@@ -22,11 +22,16 @@
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+	crossorigin="anonymous"></script>
 <!-- Simple line icons-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+	rel="stylesheet" />
 <!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Fruktur&display=swap" rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Fruktur&display=swap"
+	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${path}/resources/css/styles.css" rel="stylesheet" />
 
@@ -147,14 +152,16 @@ style>* {
 
 <script>
 	function delete_ok(id) {
-		var a = confirm("정말로 삭제하겠습니까?"); 
-		if(a) location.href='deleteok/' + id; //확인창에서 확인버튼을 누르면 deletepost.jsp?id=삭제대상의id로 페이지를 이동합니다
+		var a = confirm("정말로 삭제하겠습니까?");
+		if (a)
+			location.href = 'deleteok/' + id; //확인창에서 확인버튼을 누르면 deletepost.jsp?id=삭제대상의id로 페이지를 이동합니다
 	}
 </script>
 </head>
-<body>
+<body id="page-top">
 
 	<header class="masthead">
+		<div class = "fas fa-arrow-circle-left" onclick="history.back()"></div>
 		<h1>자유게시판</h1>
 		<a href="add">Add New Post</a>
 		<table id="list" width="90%">
