@@ -38,8 +38,8 @@
 			<mapping path = "/**"/>
 			<exclude-mapping path = "/resources/**"/>
 			<exclude-mapping path = "/img/**"/>
-			<!-- <exclude-mapping path = "/login/**"/> -->
-			<exclude-mapping path = "/**"/>
+			<exclude-mapping path = "/login/**"/>
+			<exclude-mapping path = "/"/>
 			<beans:ref bean = "LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>

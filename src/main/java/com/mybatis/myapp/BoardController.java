@@ -22,7 +22,8 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/add",method= RequestMethod.GET)
-	public String addPost() { return "addpostform";
+	public String addPost() { 
+		return "addpostform";
 	}
 	
 	@RequestMapping(value="/addok",method = RequestMethod.POST) 
@@ -46,6 +47,13 @@ public class BoardController {
 			System.out.println("데이터 수정 실패");
 		else System.out.println("데이터 수정 성공!"); 
 		return "redirect:/board/list";
+	}
+	
+	@RequestMapping(value="/showDetail/{id}",method = RequestMethod.GET) 
+	public String showPost(@PathVariable("id") int id, Model model) {
+		BoardVO boardVO = boardService.getBoard(id); 
+		model.addAttribute("u",boardVO);
+		return "showDetail";
 	}
 	
 	

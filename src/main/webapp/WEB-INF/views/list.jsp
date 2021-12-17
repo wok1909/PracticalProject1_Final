@@ -163,10 +163,10 @@ style>* {
 				<th>Title</th>
 				<th>Prof</th>
 				<th>Writer</th>
-				<th>Content</th>
 				<th>Regdate</th>
 				<th>Edit</th>
 				<th>Delete</th>
+				<th>Detail</th>
 			</tr>
 			<c:forEach items="${list}" var="u">
 				<tr>
@@ -174,7 +174,6 @@ style>* {
 					<td>${u.getTitle()}</td>
 					<td>${u.getProf()}</td>
 					<td>${u.getWriter()}</td>
-					<td>${u.getContent()}</td>
 					<td>${u.getRegdate()}</td>
 					<c:choose>
 						<c:when test="${u.getWriter() == login.userid}">
@@ -186,6 +185,7 @@ style>* {
 							<td></td>
 						</c:when>
 					</c:choose>
+					<td><a href="showDetail/${u.getSeq()}">Detail</a></td>
 				</tr>
 			</c:forEach>
 		</table>
