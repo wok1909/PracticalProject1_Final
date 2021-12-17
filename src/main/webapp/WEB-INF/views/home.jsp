@@ -1,5 +1,6 @@
 <%@ page language ="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.mybatis.myapp.HomeController"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -31,11 +32,10 @@
         <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">메뉴</li>
-                <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
-                <li class="sidebar-nav-item"><a href="#about">About 한동대학교</a></li>
+                <li class="sidebar-nav-item"><a href="${pageContext.request.contextPath}">Home</a></li>
+                <li class="sidebar-nav-item"><a href="https://www.handong.edu/">About 한동대학교</a></li>
                 <li class="sidebar-nav-item"><a href="goboard">수강후기</a></li>
-                <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
-                <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
+                <li class="sidebar-nav-item"><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
             </ul>
         </nav>
         <!-- Header-->
