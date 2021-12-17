@@ -68,4 +68,15 @@ public class HomeController {
 		HomeController.isLoggedin = isLoggedin;
 	}
 	
+	@RequestMapping(value="/contact",method= RequestMethod.GET)
+	public String contact() { 
+		String returnURL = "";
+		if(isLoggedin)
+			returnURL = "redirect:/board/contact";
+		else 
+			returnURL = "redirect:/login/login";
+		
+		return returnURL;
+	}
+	
 }
