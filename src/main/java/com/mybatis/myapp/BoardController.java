@@ -56,6 +56,11 @@ public class BoardController {
 		return "showDetail";
 	}
 	
+	@RequestMapping(value="/contact",method = RequestMethod.GET) 
+	public String contact() {
+		return "contact";
+	}
+	
 	
 	@RequestMapping(value="/deleteok/{id}",method = RequestMethod.GET) 
 	public String deletePostOk(@PathVariable("id") int id) {
