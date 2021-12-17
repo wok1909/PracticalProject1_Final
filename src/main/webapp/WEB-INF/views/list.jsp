@@ -34,11 +34,15 @@
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${path}/resources/css/styles.css" rel="stylesheet" />
+<link href="${path}/resources/css/button.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
 <title>free board</title>
+
 <style>
 #list {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
 	width: 100%;
 }
@@ -65,8 +69,8 @@
 	color: white;
 }
 
-<
-style>* {
+<style>
+* {
 	margin: 0px;
 	padding: 0px;
 	text-decoration: none;
@@ -150,6 +154,7 @@ style>* {
 }
 </style>
 
+
 <script>
 	function delete_ok(id) {
 		var a = confirm("정말로 삭제하겠습니까?");
@@ -161,9 +166,17 @@ style>* {
 <body id="page-top">
 
 	<header class="masthead">
-		<div class = "fas fa-arrow-circle-left" onclick="history.back()"></div>
-		<h1>자유게시판</h1>
-		<a href="add">Add New Post</a>
+		<!-- <div class = "fas fa-arrow-circle-left" onclick="history.back()"></div> -->
+		<div align="center" style="float: left; width: 15%;">
+			<!-- <button class="button button2" onclick="history.back()">뒤로가기</button> -->
+			<button class="w3-button w3-black" onclick="history.back()">뒤로가기</button>
+		</div>
+		<div style="float: left; width: 70%;">
+			<h2 align="center" style="text-align: center;">수강후기 게시판</h1>
+		</div>
+		<div align="center" style="float: left; width: 15%;">
+			<button class="w3-button w3-xlarge w3-circle w3-black" href="add">+</button>
+		</div>
 		<table id="list" width="90%">
 			<tr>
 				<th>Major</th>
