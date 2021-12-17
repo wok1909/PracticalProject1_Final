@@ -18,31 +18,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	private static boolean isLoggedin = false;
-	
+static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);		
-		
-		model.addAttribute("isLoggedin", String.valueOf(isLoggedin));
-		
-		return "home";
-	}
+private static boolean isLoggedin = false;
+
+
+/**
+ * Simply selects the home view to render by returning its name.
+ */
+@RequestMapping(value = "/", method = RequestMethod.GET)
+public String home(Locale locale, Model model) {
+	logger.info("Welcome home! The client locale is {}.", locale);		
 	
-	@RequestMapping(value="/login")
-	public String logout(HttpSession session) {
-		session.invalidate(); 
-		this.isLoggedin = false;
-		
-		return "redirect:/login/login";
-	}
+	model.addAttribute("isLoggedin", String.valueOf(isLoggedin));
+	
+	return "home";
+}
+
+@RequestMapping(value="/login")
+public String logout(HttpSession session) {
+	session.invalidate(); 
+	this.isLoggedin = false;
+	
+	return "redirect:/login/login";
+}
 	
 	@RequestMapping(value="/goboard",method= RequestMethod.GET)
 	public String goboard() { 
@@ -62,6 +61,17 @@ public class HomeController {
 
 	public static void setLoggedin(boolean isLoggedin) {
 		HomeController.isLoggedin = isLoggedin;
+	}
+	
+	@RequestMapping(value="/contact",method= RequestMethod.GET)
+	public String contact() { 
+		String returnURL = "";
+		if(isLoggedin)
+			returnURL = "redirect:/board/contact";
+		else 
+			returnURL = "redirect:/login/login";
+		
+		return returnURL;
 	}
 	
 }
