@@ -175,7 +175,7 @@
 			<h2 align="center" style="text-align: center;">수강후기 게시판</h1>
 		</div>
 		<div align="center" style="float: left; width: 15%;">
-			<button class="w3-button w3-xlarge w3-circle w3-black" href="add">+</button>
+			<button class="w3-button w3-xlarge w3-circle w3-black" onclick="location.href='add'">+</button>
 		</div>
 		<table id="list" width="90%">
 			<tr>
