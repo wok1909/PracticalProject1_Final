@@ -43,7 +43,15 @@
             <div class="container px-4 px-lg-5 text-center">
                 <h1 class="mb-1">한동대학교 수강후기</h1>
                 <h3 class="mb-5"><em>수강후기를 작성하고 확인하세요</em></h3>
-                <a class="btn btn-primary btn-xl" href="${pageContext.request.contextPath}/login">Login</a>
+                
+                <c:set var="cmp" value="${isLoggedin}" scope="session"/>
+                
+                <c:if test="${cmp==false}">
+                	<a class="btn btn-primary btn-xl" id="loginButton" href="${pageContext.request.contextPath}/login">Login</a>
+                </c:if>
+                <c:if test="${cmp==true}">
+                	<a class="btn btn-primary btn-xl" id="gotoButton" href="goboard">Go To Board</a>
+                </c:if>
             </div>
         </header>
         
@@ -54,5 +62,8 @@
         
         <script src="js/scripts.js"></script>
         <script src="${path}/resources/js/scripts.js"></script>
+        
+        <script>
+        </script>
     </body>
 </html>
