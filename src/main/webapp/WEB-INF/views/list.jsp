@@ -169,7 +169,7 @@
 		<!-- <div class = "fas fa-arrow-circle-left" onclick="history.back()"></div> -->
 		<div align="center" style="float: left; width: 15%;">
 			<!-- <button class="button button2" onclick="history.back()">뒤로가기</button> -->
-			<button class="w3-button w3-black" onclick="history.back()">뒤로가기</button>
+			<button class="w3-button w3-black" onclick="location.href='../'">뒤로가기</button>
 		</div>
 		<div style="float: left; width: 70%;">
 			<h2 align="center" style="text-align: center;">수강후기 게시판</h1>
