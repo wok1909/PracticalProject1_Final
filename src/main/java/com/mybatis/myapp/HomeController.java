@@ -1,72 +1,82 @@
 package com.mybatis.myapp;
 
-import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Controller;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable; 
-import org.springframework.web.bind.annotation.RequestMapping; 
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.mybatis.myapp.board.BoardVO;
-import com.mybatis.myapp.service.BoardService;
 
+/**
+ * Handles requests for the application home page.
+ */
+@Controller
+public class HomeController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	private static boolean isLoggedin = false;
+	
 
-@Controller 
-@RequestMapping(value="/board") 
-public class BoardController {
-	@Autowired
-	BoardService boardService;
-	
-	@RequestMapping(value="/list", method = RequestMethod.GET) 
-	public String boardlist(Model model) {
-		model.addAttribute("list",boardService.getBoardList()); return "list";
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "home";
 	}
 	
-	
-	@RequestMapping(value="/add",method= RequestMethod.GET)
-	public String addPost() { 
-		return "addpostform";
+	@RequestMapping(value="/login")
+	public String logout(HttpSession session) {
+		session.invalidate(); 
+		this.isLoggedin = false;
+		return "redirect:/login/login";
 	}
 	
-	@RequestMapping(value="/addok",method = RequestMethod.POST) 
-	public String addPostOk(BoardVO vo) {
-		if(boardService.insertBoard(vo)==0) 
-			System.out.println("데이터 추가 실패");
-		else System.out.println("데이터 추가 성공!"); 
-		return "redirect:/board/list";
+	@RequestMapping(value="/goboard",method= RequestMethod.GET)
+	public String goboard() { 
+		String returnURL = "";
+		if(isLoggedin)
+			returnURL = "redirect:/board/list";
+		else 
+			returnURL = "redirect:/login/login";
+		
+		
+		return returnURL;
 	}
 	
-	@RequestMapping(value="/editform/{id}",method = RequestMethod.GET) 
-	public String editPost(@PathVariable("id") int id, Model model) {
-		BoardVO boardVO = boardService.getBoard(id); 
-		model.addAttribute("u",boardVO);
-		return "editform";
+	public static boolean isLoggedin() {
+		return isLoggedin;
+	}
+
+	public static void setLoggedin(boolean isLoggedin) {
+		HomeController.isLoggedin = isLoggedin;
 	}
 	
-	@RequestMapping(value="/editok",method = RequestMethod.POST) 
-	public String editPostOk(BoardVO vo) {
-		if(boardService.updateBoard(vo)==0) 
-			System.out.println("데이터 수정 실패");
-		else System.out.println("데이터 수정 성공!"); 
-		return "redirect:/board/list";
+	@RequestMapping(value="/contact",method= RequestMethod.GET)
+	public String contact() { 
+		String returnURL = "";
+		if(isLoggedin)
+			returnURL = "redirect:/board/contact";
+		else 
+			returnURL = "redirect:/login/login";
+		
+		return returnURL;
 	}
 	
-	@RequestMapping(value="/showDetail/{id}",method = RequestMethod.GET) 
-	public String showPost(@PathVariable("id") int id, Model model) {
-		BoardVO boardVO = boardService.getBoard(id); 
-		model.addAttribute("u",boardVO);
-		return "showDetail";
-	}
-	
-	@RequestMapping(value="/contact",method = RequestMethod.GET) 
-	public String contact() {
-		return "contact";
-	}
-	
-	
-	@RequestMapping(value="/deleteok/{id}",method = RequestMethod.GET) 
-	public String deletePostOk(@PathVariable("id") int id) {
-		if(boardService.deleteBoard(id)==0) 
-			System.out.println("데이터 수정 실패");
-		else System.out.println("데이터 수정 성공!"); 
-		return "redirect:/board/list";
-	}
 }
